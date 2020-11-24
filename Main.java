@@ -2,7 +2,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        String path = "C:\\Users\\" + System.getProperty("user.name") +"\\Desktop\\projectJava\\Fantasy\\Fantasy-Database\\UserDatabase.txt";
+        String path = "C:\\Users\\" + System.getProperty("user.name") +"\\Documents\\Fantasy-Database\\UserDatabase.txt";
         Scanner input = new Scanner(System.in);
         UserRepo userRepo = new UserRepo();
         User user1;
