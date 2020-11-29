@@ -1,12 +1,5 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-// added playerTeam in Player, then handling input&output format in PLayerRepo          PLayer & PLayerRepo class
-// added all players to the database with the new format                                 PlayerDatabase.txt
-// added Repo interface , useless for now.. unless we add setters and getters for maps   Repo Interface (new)
-// Registration class done, login and signUp functions                                   Registration CLass
-// generic PC-username inside the passed path (system.getProperty() method)              Main Class
-// handling the registration process in Main ..not complete yet ,,check next comment     Main Class
-// TO-DO: setting Squad id for new user                                                  Main CLass
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         String path = "C:\\Users\\" + System.getProperty("user.name") +"\\Documents\\Fantasy-Database\\UserDatabase.txt";
@@ -68,48 +61,3 @@ public class Main {
 
     }
 }
-
-
-    /*String path = "C:\\Users\\" + System.getProperty("user.name") + "\\Documents\\Fantasy-Database\\nonformat.txt";
-    ReposFormater(path);
-    private static void ReposFormater(String path) throws FileNotFoundException {
-        File file = new File(path);
-        ArrayList<String> reader = new ArrayList<>();
-        Scanner sc = new Scanner(file);
-        while (sc.hasNextLine()) {
-            reader.add(sc.nextLine());
-        }
-        int x=0;
-        while (x<reader.size()-1) {
-            String Line = reader.get(x);
-            String information = "";
-            int count = 0;
-            Player p1 = new Player();
-            for (int i = 0; i < Line.length(); i++) {
-                if (Line.charAt(i) == '\t') {
-                    switch (count) {
-                        case 0:
-                            p1.setPlayerName(information);
-                            break;
-                            case 1: p1.setPlayerTeam(information); break;
-                        case 2:
-                           p1.setPlayerTotalPoints(Integer.parseInt(information));
-                            break;
-                    }
-                    count++;
-                    information = "";
-                } else {
-                    information += Line.charAt(i);
-                }
-            }
-            String Playervalue = Line.substring(Line.length()-3,Line.length()-2);
-            String PlayerName =p1.getPlayerName();
-            String PLayerTeam = p1.getPlayerTeam();
-            int s4 =Integer.parseInt(Playervalue);
-            int s6 =p1.getPlayerTotalPoints();
-            PrintWriter writer = new PrintWriter(new FileOutputStream(new File("C:\\Users\\"+System.getProperty("user.name")+"\\Documents\\Fantasy-Database\\formated.txt"),true));
-            writer.write(x+260 + "~" + PlayerName + "~" + PLayerTeam +"~" + "FD" + "~" + s4 + "~" + 0 + "~" + s6 +";\n");
-            writer.close();
-            x++;
-        }
-    }*/
