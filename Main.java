@@ -9,7 +9,6 @@ import java.util.Scanner;
 // TO-DO: setting Squad id for new user                                                  Main CLass
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        int x = 3;
         String path = "C:\\Users\\" + System.getProperty("user.name") +"\\Documents\\Fantasy-Database\\UserDatabase.txt";
         Scanner input = new Scanner(System.in);
         UserRepo userRepo = new UserRepo();
