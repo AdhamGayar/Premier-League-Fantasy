@@ -5,6 +5,7 @@ public class UserService {
     private SquadRepo squadRepo;
     private PlayerRepo playerRepo;
     Squad s = new Squad(); //new
+    ArrayList<Integer> myPlayers = new ArrayList<>(15);
     void createSquad(String username,String squadName) // NEW
     {
         s.setSquadName(squadName);
@@ -14,8 +15,6 @@ public class UserService {
     }
     void addPlayerToSquad(int playerId) // NEW
     {
-        //playerRepo.playersMap.get(playerId);
-        ArrayList<Integer> myPlayers= new ArrayList<>(15) ;
         myPlayers.add(playerId);
         s.setListOfPlayerID(myPlayers);
     }

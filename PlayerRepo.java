@@ -43,11 +43,11 @@ public class PlayerRepo implements Repo{
                 }
             }
         }
-        for (Map.Entry<Integer, Player> me : playersMap.entrySet()) {
+       /* for (Map.Entry<Integer, Player> me : playersMap.entrySet()) {
             Player p3;
             p3=me.getValue();
             System.out.println(p3.getPlayerID()+" "+p3.getPlayerName()+" "+p3.getPlayerTeam()+" "+p3.getPlayerPosition()+" "+p3.getPlayerValue()+" "+p3.getPlayerMatchPoints()+" "+p3.getPlayerTotalPoints());
-        }
+        }*/
     }
     public void writeToFile(String path) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(new File(path));
