@@ -62,11 +62,11 @@ public class SquadRepo implements Repo{
                 }
             }
         }
-        for (Map.Entry<Integer, Squad> me : squadMap.entrySet()) {
+        /*for (Map.Entry<Integer, Squad> me : squadMap.entrySet()) {
             Squad s3;
             s3 = me.getValue();
             System.out.println(s3.getSquadID() + " " + s3.getSquadName() + " " + s3.getSquadValue() + " " + s3.getNumOfPlayers() + " " + s3.getSquadCaptainID() + " " + s3.getCurrentNoGK() + " " + s3.getCurrentNoDF() + " " + s3.getCurrentNoMF() + " " + s3.getCurrentNoFD()+ " " + s3.getListOfPlayerID());
-        }
+        }*/
     }
 
     public void writeToFile(String path) throws FileNotFoundException {
@@ -92,7 +92,7 @@ public class SquadRepo implements Repo{
                     else
                         writer.write(s10.get(i) + ",");
                 }
-                writer.write("]" + ";");
+                writer.write("]" + ";" +"\n");
             }
         } catch (NullPointerException x) {
         }

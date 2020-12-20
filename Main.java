@@ -2,13 +2,19 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        String path = "C:\\Users\\" + System.getProperty("user.name") +"\\Documents\\Fantasy-Database\\UserDatabase.txt";
+        String path = "Fantasy-Database\\UserDatabase.txt";
         Scanner input = new Scanner(System.in);
+        Scanner intInput = new Scanner(System.in);
         UserRepo userRepo = new UserRepo();
+        SquadRepo squadRepo = new SquadRepo();
         User user1;
         String username;
         String password;
+        String squadName;
+        int playerID;
         userRepo.readFromFile(path);
+        squadRepo.readFromFile("Fantasy-Database\\SquadDatabase.txt");
+
         Registration register = new Registration();
         System.out.println("Welcome To Premier League Fantasy 20/21");
         System.out.println("Are you a current user? (Y/N)");
@@ -21,6 +27,32 @@ public class Main {
                 if (register.login(username, password)) {
                     user1 = userRepo.usersMap.get(username);
                     System.out.println("Login succeded");
+
+                    //NEW
+                    if(user1.getSquadID()==0)
+                    {
+                        System.out.println("Do you want to create a squad? (Y/N)");
+                        String choice = input.nextLine();
+                        if(choice.compareToIgnoreCase("Y") == 0) {
+                            System.out.println("Enter your squad name");
+                            squadName = input.nextLine();
+                            UserService u = new UserService();
+                            u.createSquad(username, squadName);
+                            for (int i = 0; i < 15; i++) {
+                                System.out.println("enter player number " + i + " ID");
+                                playerID = intInput.nextInt();
+                                u.addPlayerToSquad(playerID);
+                            }
+                            System.out.println("Squad created successfully");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("welcome: " + user1.getUsername() + " ,Squad: " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());
+                    }
+
+                    ///////////////////////////////////////////
+
                 } else {
                     System.out.println("Login failed");
                     System.out.println("Please check your credentials and try again");
@@ -38,8 +70,7 @@ public class Main {
                 password = input.nextLine();
                 System.out.println("Enter Email");
                 String Email = input.nextLine();
-                //squad id .. setting it is based on what???
-                user1 = new User(username,Email,password,0);
+                user1 = new User(username,Email,password);
                 System.out.println("Enter your favorite team");
                 String favTeam = input.nextLine();
                 user1.setFavoriteTeam(favTeam);
@@ -57,7 +88,7 @@ public class Main {
         else{
             System.out.println("Login Failed");
         }
-       userRepo.writeToFile(path);
-
+        userRepo.writeToFile(path);
+        squadRepo.writeToFile("Fantasy-Database\\SquadDatabase.txt");
     }
 }

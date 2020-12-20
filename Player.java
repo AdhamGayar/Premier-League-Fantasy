@@ -3,18 +3,20 @@ public class Player {
     private String playerPosition;
     private int playerValue;
     private int playerID;
-    private int playerTotalPoints;
-    private int playerMatchPoints;
+    private int playerTotalPoints = 0;
+    private int playerMatchPoints = 0;
     private String playerTeam;
-
+// private String playerNationality;
     public Player()
     {
 
     }
-    public Player(String playerName, String playerPosition, int playerValue) {
+    public Player(int playerID,String playerName, String playerPosition, int playerValue, String playerTeam) {
         this.playerName = playerName;
         this.playerPosition = playerPosition;
         this.playerValue = playerValue;
+        this.playerID = playerID;
+        this.playerTeam = playerTeam;
     }
 
     public String getPlayerName() {

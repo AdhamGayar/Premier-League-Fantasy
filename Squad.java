@@ -5,7 +5,7 @@ public class Squad {
     private int numOfPlayers = 0; // #4
     private String squadName; // #2
     private int squadValue = 0; // #3
-    private int squadID; // #1
+    private int squadID = 0 ; // #1
     private int squadCaptainID; // #5
     private int currentNoGK = 0; // #6
     private int currentNoDF = 0; // #7

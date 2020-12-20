@@ -4,15 +4,14 @@ public class User {
     private String email;
     private String favoriteTeam;
     private int userBudget = 100000000;
-    private int squadID;
+    private int squadID = 0;
     User()
     {}
-    User(String username, String email, String password, int squadID)
+    User(String username, String email, String password)
     {
             this.username = username;
             this.password = password;
             this.email = email;
-            this.squadID = squadID;
     }
     public String getPassword() {
         return password;

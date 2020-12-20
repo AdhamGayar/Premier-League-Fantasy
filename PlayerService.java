@@ -9,8 +9,15 @@ public class PlayerService {
     boolean editPlayer(Player player){
         return true;
     }
-    boolean addPlayer(Player player)
+    void addNewPlayer(Player player)
     {
-        return true;
+
+        /*String playerName;
+        String playerPosition;
+         int playerValue;
+         int playerID;
+         String playerTeam;*/
+        player = new Player();
+        PlayerRepo.playersMap.put(player.getPlayerID(),player);
     }
 }

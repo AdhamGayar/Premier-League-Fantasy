@@ -1,21 +1,29 @@
+import java.util.ArrayList;
+
 public class UserService {
     private UserRepo userRepo;
     private SquadRepo squadRepo;
     private PlayerRepo playerRepo;
-
-    void createSquad(String username)
+    Squad s = new Squad(); //new
+    void createSquad(String username,String squadName) // NEW
     {
-
+        s.setSquadName(squadName);
+        s.setSquadID(SquadRepo.squadMap.size()+1);
+        userRepo.usersMap.get(username).setSquadID(s.getSquadID());
+        SquadRepo.squadMap.put(s.getSquadID(),s);
     }
-    boolean addPlayerToSquad(String username,int playerId)
+    void addPlayerToSquad(int playerId) // NEW
     {
-        return true;
+        //playerRepo.playersMap.get(playerId);
+        ArrayList<Integer> myPlayers= new ArrayList<>(15) ;
+        myPlayers.add(playerId);
+        s.setListOfPlayerID(myPlayers);
     }
     boolean removePlayerFromSquad(String username,int playerId)
     {
         return true;
     }
-    void setCaptain(String username,int playerID)
+    void setCaptain(int playerID)
     {
 
     }
