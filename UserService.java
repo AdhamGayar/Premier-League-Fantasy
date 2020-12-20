@@ -5,7 +5,6 @@ public class UserService {
     private SquadRepo squadRepo;
     private PlayerRepo playerRepo;
     Squad s = new Squad(); //new
-    ArrayList<Integer> myPlayers = new ArrayList<>(15);
     void createSquad(String username,String squadName) // NEW
     {
         s.setSquadName(squadName);
@@ -13,12 +12,12 @@ public class UserService {
         userRepo.usersMap.get(username).setSquadID(s.getSquadID());
         SquadRepo.squadMap.put(s.getSquadID(),s);
     }
-    void addPlayerToSquad(int playerId) // NEW
+    void addPlayerToSquad(String username , int playerId) // NEW
     {
-        myPlayers.add(playerId);
-        s.setListOfPlayerID(myPlayers);
+        int squadID = userRepo.usersMap.get(username).getSquadID();
+        squadRepo.squadMap.get(squadID).setPlayerID(playerId);
     }
-    boolean removePlayerFromSquad(String username,int playerId)
+    boolean removePlayerFromSquad(String username , int playerId)
     {
         return true;
     }

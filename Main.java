@@ -54,7 +54,7 @@ public class Main {
                             for (int i = 0; i < 15; i++) {
                                 System.out.println("enter player number " + i + " ID");
                                 playerID = intInput.nextInt();
-                                u.addPlayerToSquad(playerID);
+                                u.addPlayerToSquad(username,playerID);
                             }
                             System.out.println("Squad created successfully");
                         }
