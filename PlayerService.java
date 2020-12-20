@@ -17,7 +17,6 @@ public class PlayerService {
          int playerValue;
          int playerID;
          String playerTeam;*/
-        player = new Player();
         PlayerRepo.playersMap.put(player.getPlayerID(),player);
     }
 }

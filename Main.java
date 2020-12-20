@@ -54,7 +54,7 @@ public class Main {
                             for (int i = 0; i < 15; i++) {
                                 System.out.println("enter player number " + i + " ID");
                                 playerID = intInput.nextInt();
-                                u.addPlayerToSquad(playerID);
+                                u.addPlayerToSquad(username,playerID);
                             }
                             System.out.println("Squad created successfully");
                         }
@@ -71,7 +71,7 @@ public class Main {
                     System.out.println("Please check your credentials and try again");
                 }
         }
-        else if(userChoice.compareToIgnoreCase("N")==0)  // SIGNUP PROCESS BEGIN
+        else if(userChoice.compareToIgnoreCase("N")==0)  // SignUp PROCESS BEGIN
         {
             System.out.println("Do You want to signUp? (Y/N)");
             String choice = stringInput.nextLine();

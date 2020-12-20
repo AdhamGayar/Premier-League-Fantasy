@@ -26,7 +26,10 @@ public class Squad {
 
     public int getCurrentNoGK()
     { return currentNoGK; }
-
+    public void setPlayerInSquad(int playerId)
+    {
+        listOfPlayerID.add(playerId);
+    }
     public void setCurrentNoGK(int currentNoGK) {
         this.currentNoGK = currentNoGK;
     }
