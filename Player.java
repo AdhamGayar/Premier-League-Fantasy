@@ -6,6 +6,7 @@ public class Player {
     private int playerTotalPoints = 0;
     private int playerMatchPoints = 0;
     private String playerTeam;
+// private String playerNationality;
     public Player()
     {
 

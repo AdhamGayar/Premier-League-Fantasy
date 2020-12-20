@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Squad {
-    private ArrayList<Integer> listOfPlayerID;
+    private ArrayList<Integer> listOfPlayerID = new ArrayList<Integer>();
     private int numOfPlayers = 0; // #4
     private String squadName; // #2
     private int squadValue = 0; // #3
@@ -26,10 +26,7 @@ public class Squad {
 
     public int getCurrentNoGK()
     { return currentNoGK; }
-    public void setPlayerInSquad(int playerId)
-    {
-        listOfPlayerID.add(playerId);
-    }
+
     public void setCurrentNoGK(int currentNoGK) {
         this.currentNoGK = currentNoGK;
     }
@@ -92,5 +89,9 @@ public class Squad {
 
     public void setListOfPlayerID(ArrayList<Integer> listOfPlayerID) {
         this.listOfPlayerID = listOfPlayerID;
+    }
+    public void setPlayerID(int playerID)
+    {
+        listOfPlayerID.add(playerID);
     }
 }

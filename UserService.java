@@ -12,14 +12,12 @@ public class UserService {
         userRepo.usersMap.get(username).setSquadID(s.getSquadID());
         SquadRepo.squadMap.put(s.getSquadID(),s);
     }
-    void addPlayerToSquad(String username,int playerId) // NEW
+    void addPlayerToSquad(String username , int playerId) // NEW
     {
-       /* myPlayers.add(playerId);
-        s.setListOfPlayerID(myPlayers);*/
         int squadID = userRepo.usersMap.get(username).getSquadID();
-        squadRepo.squadMap.get(squadID).setPlayerInSquad(playerId);
+        squadRepo.squadMap.get(squadID).setPlayerID(playerId);
     }
-    boolean removePlayerFromSquad(String username,int playerId)
+    boolean removePlayerFromSquad(String username , int playerId)
     {
         return true;
     }

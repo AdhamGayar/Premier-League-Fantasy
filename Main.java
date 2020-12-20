@@ -25,9 +25,9 @@ public class Main {
         Registration register = new Registration(); // Registration
 
         System.out.println("Welcome To Premier League Fantasy 20/21");
-        System.out.println("Are you a current user? (Y/N)"); // login or signup
+        System.out.println("To: \nSign up -> enter 1 \nLog in -> enter 2"); // login or signup
         String userChoice = stringInput.nextLine();
-        if(userChoice.compareToIgnoreCase("Y")==0)      // LOGIN PROCESS BEGIN
+        if(userChoice.equals("2"))      // LOGIN PROCESS BEGIN
         {
             System.out.println("Enter username :");
             username = stringInput.nextLine();
@@ -44,14 +44,14 @@ public class Main {
                         String squadName;
                         int playerID;
                         System.out.println("You don't have a squad yet");
-                        System.out.println("Do you want to create a squad? (Y/N)");
+                        System.out.println("To: \nCreate a squad -> enter 1 \nProceed to profile -> enter 2");
                         String choice = stringInput.nextLine();
-                        if(choice.compareToIgnoreCase("Y") == 0) {
+                        if(choice.equals("1")) {
                             System.out.println("Enter your squad name");
                             squadName = stringInput.nextLine();
                             UserService u = new UserService();
                             u.createSquad(username, squadName);
-                            for (int i = 0; i < 15; i++) {
+                            for (int i = 1; i <= 15; i++) {
                                 System.out.println("enter player number " + i + " ID");
                                 playerID = intInput.nextInt();
                                 u.addPlayerToSquad(username,playerID);
@@ -71,35 +71,27 @@ public class Main {
                     System.out.println("Please check your credentials and try again");
                 }
         }
-        else if(userChoice.compareToIgnoreCase("N")==0)  // SignUp PROCESS BEGIN
+        else if(userChoice.equals("1"))  // SIGNUP PROCESS BEGIN
         {
-            System.out.println("Do You want to signUp? (Y/N)");
-            String choice = stringInput.nextLine();
-            if(choice.compareToIgnoreCase("Y") == 0)
-            {
-                System.out.println("Enter Username");
-                username = stringInput.nextLine();
-                System.out.println("Enter Password");
-                password = stringInput.nextLine();
-                System.out.println("Enter Email");
-                String Email = stringInput.nextLine();
-                user1 = new User(username,Email,password);
-                System.out.println("Enter your favorite team");
-                String favTeam = stringInput.nextLine();
-                user1.setFavoriteTeam(favTeam);
-                while (!register.signUp(user1))
+            System.out.println("Enter Username");
+            username = stringInput.nextLine();
+            System.out.println("Enter Password");
+            password = stringInput.nextLine();
+            System.out.println("Enter Email");
+            String Email = stringInput.nextLine();
+            user1 = new User(username,Email,password);
+            System.out.println("Enter your favorite team");
+            String favTeam = stringInput.nextLine();
+            user1.setFavoriteTeam(favTeam);
+            while (!register.signUp(user1))
                 {
-                    System.out.println("the username you entered is not available..Please choose another username");
+                    System.out.println("The username you entered is not available..Please choose another username");
                     user1.setUsername(stringInput.nextLine());
                 }
                 System.out.println("Wohoo..Registration completed");
-            }
-            else {
-                System.out.println("Registration failed");
-            }
         }  // SIGNUP END
         else{
-            System.out.println("Login Failed");
+            System.out.println("Please choose a valid option");
         }
         userRepo.writeToFile(userPath);  // writing to files
         squadRepo.writeToFile(squadPath);
