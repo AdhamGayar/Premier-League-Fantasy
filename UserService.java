@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class UserService {
     private UserRepo userRepo;
     private SquadRepo squadRepo;
@@ -16,7 +14,6 @@ public class UserService {
     {
 
         int squadID = userRepo.usersMap.get(username).getSquadID();
-        //Squad squad = SquadRepo.squadMap.get(squadID);
         int GK = SquadRepo.squadMap.get(squadID).getCurrentNoGK();
         int DF = SquadRepo.squadMap.get(squadID).getCurrentNoDF();
         int MF = SquadRepo.squadMap.get(squadID).getCurrentNoMF();
