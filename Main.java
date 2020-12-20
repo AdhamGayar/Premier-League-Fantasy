@@ -23,55 +23,12 @@ public class Main {
         Scanner intInput = new Scanner(System.in);
 
         Registration register = new Registration(); // Registration
-
         System.out.println("Welcome To Premier League Fantasy 20/21");
-        System.out.println("To: \nSign up -> enter 1 \nLog in -> enter 2"); // login or signup
-        String userChoice = stringInput.nextLine();
-        if(userChoice.equals("2"))      // LOGIN PROCESS BEGIN
+        while(true)
         {
-            System.out.println("Enter username :");
-            username = stringInput.nextLine();
-            System.out.println("Enter password");
-            password = stringInput.nextLine();
-                if (register.login(username, password)) // Username & password verification
-                {
-                    user1 = userRepo.usersMap.get(username);
-                    System.out.println("Login succeded");
-
-                    //NEW
-                    if(user1.getSquadID()==0)
-                    {
-                        String squadName;
-                        int playerID;
-                        System.out.println("You don't have a squad yet");
-                        System.out.println("To: \nCreate a squad -> enter 1 \nProceed to profile -> enter 2");
-                        String choice = stringInput.nextLine();
-                        if(choice.equals("1")) {
-                            System.out.println("Enter your squad name");
-                            squadName = stringInput.nextLine();
-                            UserService u = new UserService();
-                            u.createSquad(username, squadName);
-                            for (int i = 1; i <= 15; i++) {
-                                System.out.println("enter player number " + i + " ID");
-                                playerID = intInput.nextInt();
-                                u.addPlayerToSquad(username,playerID);
-                            }
-                            System.out.println("Squad created successfully");
-                        }
-                    }
-                    else
-                    {
-                        System.out.println("welcome: " + user1.getUsername() + " ,Squad: " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());
-                    }
-
-                    ///////////////////////////////////////////
-
-                } else {
-                    System.out.println("Login failed");
-                    System.out.println("Please check your credentials and try again");
-                }
-        }
-        else if(userChoice.equals("1"))  // SIGNUP PROCESS BEGIN
+        System.out.println("To: \nSign up -> enter 1 \nLog in -> enter 2 \nExit -> enter 3"); // login or signup
+        String userChoice = stringInput.nextLine();
+        if(userChoice.equals("1"))  // SIGNUP PROCESS BEGIN
         {
             System.out.println("Enter Username");
             username = stringInput.nextLine();
@@ -84,14 +41,65 @@ public class Main {
             String favTeam = stringInput.nextLine();
             user1.setFavoriteTeam(favTeam);
             while (!register.signUp(user1))
-                {
-                    System.out.println("The username you entered is not available..Please choose another username");
-                    user1.setUsername(stringInput.nextLine());
-                }
-                System.out.println("Wohoo..Registration completed");
+            {
+                System.out.println("The username you entered is not available..Please choose another username");
+                user1.setUsername(stringInput.nextLine());
+            }
+            System.out.println("Wohoo..Registration completed");
         }  // SIGNUP END
+        else if(userChoice.equals("2"))      // LOGIN PROCESS BEGIN
+        {
+            System.out.println("Enter username :");
+            username = stringInput.nextLine();
+            System.out.println("Enter password");
+            password = stringInput.nextLine();
+                if (register.login(username, password)) // Username & password verification
+                {
+                    user1 = userRepo.usersMap.get(username);
+                    System.out.println("Login succeded");
+                        if (user1.getSquadID() == 0) // IF user doesn't have a squad
+                        {
+                            String squadName;
+                            int playerID;
+                            System.out.println("You don't have a squad yet");
+                            System.out.println("To: \nCreate a squad -> enter 1 \nlogOut -> enter 2");
+                            String choice = stringInput.nextLine();
+                            if (choice.equals("1")) {
+                                System.out.println("Enter your squad name");
+                                squadName = stringInput.nextLine();
+                                UserService u = new UserService();
+                                u.createSquad(username, squadName);
+                                for (int i = 1; i <= 15; i++) {
+                                    System.out.println("enter player number " + i + " ID");
+                                    playerID = intInput.nextInt();
+                                    if(!u.addPlayerToSquad(username, playerID)){
+                                        System.out.println("max number exceeded");
+                                        i--;
+                                    }
+                                }
+                                System.out.println("Squad created successfully");
+                                System.out.println("welcome: " + user1.getUsername() + "\tSquad: " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());
+                            }
+                            else if (choice.equals("2")) {
+                                System.out.println("Logged Out");
+                                break;
+                            }
+                        } else {
+                            System.out.println("welcome: " + user1.getUsername() + "\tSquad: " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());
+                        }
+                        break;
+                } else {
+                    System.out.println("Login failed");
+                    System.out.println("Please check your credentials and try again");
+                }
+        }
+        else if(userChoice.equals("3"))
+        {
+            break;
+        }
         else{
             System.out.println("Please choose a valid option");
+        }
         }
         userRepo.writeToFile(userPath);  // writing to files
         squadRepo.writeToFile(squadPath);
