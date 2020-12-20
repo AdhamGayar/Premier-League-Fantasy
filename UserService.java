@@ -17,10 +17,10 @@ public class UserService {
 
         int squadID = userRepo.usersMap.get(username).getSquadID();
         //Squad squad = SquadRepo.squadMap.get(squadID);
-        int GK = s.getCurrentNoGK();
-        int DF = s.getCurrentNoDF();
-        int MF = s.getCurrentNoMF();
-        int FD = s.getCurrentNoFD();
+        int GK = SquadRepo.squadMap.get(squadID).getCurrentNoGK();
+        int DF = SquadRepo.squadMap.get(squadID).getCurrentNoDF();
+        int MF = SquadRepo.squadMap.get(squadID).getCurrentNoMF();
+        int FD = SquadRepo.squadMap.get(squadID).getCurrentNoFD();
         String position = playerRepo.playersMap.get(playerId).getPlayerPosition();
         if(position.equals("DF"))
         {
@@ -28,10 +28,10 @@ public class UserService {
                 System.out.println(DF);
                 DF++;
                 System.out.println(DF);
-                SquadRepo.squadMap.get(squadID).setCurrentNoGK(DF);
+                SquadRepo.squadMap.get(squadID).setCurrentNoDF(DF);
                 System.out.println(DF);
             }
-            else {return false;}
+            else return false;
         }
         else if(position.equals("GK"))
         {
@@ -40,22 +40,19 @@ public class UserService {
                 SquadRepo.squadMap.get(squadID).setCurrentNoGK(++GK);
                 System.out.println(GK);
             }
-        else
-        {
-            return false;
-        }
+        else return false;
         }
         else if(position.equals("MF")){
 
             if(MF<5) {
-                SquadRepo.squadMap.get(squadID).setCurrentNoGK(++MF);
+                SquadRepo.squadMap.get(squadID).setCurrentNoMF(++MF);
         System.out.println(MF); }
         else return false;
         }
         else if(position.equals("FD"))
         {
             if(FD<3){
-                SquadRepo.squadMap.get(squadID).setCurrentNoGK(++FD);
+                SquadRepo.squadMap.get(squadID).setCurrentNoFD(++FD);
                 System.out.println(FD);
             } else return false;
         }

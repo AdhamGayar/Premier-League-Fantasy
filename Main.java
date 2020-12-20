@@ -57,7 +57,7 @@ public class Main {
                 {
                     user1 = userRepo.usersMap.get(username);
                     System.out.println("Login succeded");
-                        if (user1.getSquadID() == 0) // IF user doesn't have a squad
+                        if (user1.getSquadID() == 0) // if user doesn't have a squad
                         {
                             String squadName;
                             int playerID;
@@ -72,7 +72,8 @@ public class Main {
                                 for (int i = 1; i <= 15; i++) {
                                     System.out.println("enter player number " + i + " ID");
                                     playerID = intInput.nextInt();
-                                    if(!u.addPlayerToSquad(username, playerID)){
+                                    if(!u.addPlayerToSquad(username, playerID))
+                                    {
                                         System.out.println("max number exceeded");
                                         i--;
                                     }
