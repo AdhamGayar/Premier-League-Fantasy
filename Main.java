@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Welcome To Premier League Fantasy 20/21");
         while(true)
         {
-        System.out.println("To: \nSign up -> enter 1 \nLog in -> enter 2 \nExit -> enter 3"); // login or signup
+        System.out.println("To: \nSign up -> enter 1 \nLog in -> enter 2 \nExit -> enter 3"); // Outer Menu
         String userChoice = stringInput.nextLine();
         if(userChoice.equals("1"))  // SIGNUP PROCESS BEGIN
         {
@@ -62,7 +62,7 @@ public class Main {
                             String squadName;
                             int playerID;
                             System.out.println("You don't have a squad yet");
-                            System.out.println("To: \nCreate a squad -> enter 1 \nlogOut -> enter 2");
+                            System.out.println("To: \nCreate a squad -> enter 1 \nlogout -> enter 2");  // Inner Menu
                             String choice = stringInput.nextLine();
                             if (choice.equals("1")) {
                                 System.out.println("Enter your squad name");
@@ -72,29 +72,30 @@ public class Main {
                                 for (int i = 1; i <= 15; i++) {
                                     System.out.println("enter player number " + i + " ID");
                                     playerID = intInput.nextInt();
-                                    if(!u.addPlayerToSquad(username, playerID))
+                                    if(!u.addPlayerToSquad(username, playerID)) //Checking number of players in each position
                                     {
-                                        System.out.println("max number exceeded");
+                                        System.out.println("max number exceeded..Can't add this player");
                                         i--;
                                     }
                                 }
                                 System.out.println("Squad created successfully");
-                                System.out.println("welcome: " + user1.getUsername() + "\tSquad: " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());
-                            }
-                            else if (choice.equals("2")) {
-                                System.out.println("Logged Out");
+                                System.out.println("welcome " + user1.getUsername() + " , Squad " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());
                                 break;
                             }
-                        } else {
-                            System.out.println("welcome: " + user1.getUsername() + "\tSquad: " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());
+                            else if (choice.equals("2")) {
+                                System.out.println("Logged out");
+                                //break;
+                            }
+                        } else {   //if User have a Squad
+                            System.out.println("welcome " + user1.getUsername() + " , Squad " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());
+                            break;
                         }
-                        break;
                 } else {
                     System.out.println("Login failed");
                     System.out.println("Please check your credentials and try again");
                 }
         }
-        else if(userChoice.equals("3"))
+        else if(userChoice.equals("3"))  // EXIT
         {
             break;
         }
@@ -107,4 +108,3 @@ public class Main {
         playerRepo.writeToFile(playerPath);
     }
 }
-//bos dy
