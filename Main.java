@@ -84,7 +84,6 @@ public class Main {
                             }
                             else if (choice.equals("2")) {
                                 System.out.println("Logged out");
-                                //break;
                             }
                         } else {   //if User have a Squad
                             System.out.println("welcome " + user1.getUsername() + " , Squad " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());

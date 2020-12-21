@@ -13,19 +13,21 @@ public class UserService {
     boolean addPlayerToSquad(String username , Integer playerId) // NEW
     {
         int squadID = userRepo.usersMap.get(username).getSquadID();
+        int numOfPlayers = SquadRepo.squadMap.get(squadID).getNumOfPlayers();
         if(!budgetChecker(username,playerId)) return false;
         if(!PlayerIdentityChecker(username,playerId)) return false;
         if(!playersCounterChecker(username,playerId)) return false;
         if(!playersPositionChecker(username,playerId)) return false;
 
-        squadRepo.squadMap.get(squadID).setPlayerID(playerId);
+        SquadRepo.squadMap.get(squadID).setPlayerID(playerId);
+        SquadRepo.squadMap.get(squadID).setNumOfPlayers(++numOfPlayers);
         return true;
     }
-    int sum = 0;
     boolean budgetChecker(String username , Integer playerId)
     {
         int squadID = userRepo.usersMap.get(username).getSquadID();
         int playerValue = playerRepo.playersMap.get(playerId).getPlayerValue();
+        int sum = SquadRepo.squadMap.get(squadID).getSquadValue();
         sum = sum + playerValue;
         if(sum>100)
         {
