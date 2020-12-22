@@ -23,7 +23,7 @@ public class UserService {
         SquadRepo.squadMap.get(squadID).setNumOfPlayers(++numOfPlayers);
         return true;
     }
-    boolean budgetChecker(String username , Integer playerId)
+    private boolean budgetChecker(String username , Integer playerId)
     {
         int squadID = userRepo.usersMap.get(username).getSquadID();
         int playerValue = playerRepo.playersMap.get(playerId).getPlayerValue();
@@ -37,7 +37,7 @@ public class UserService {
         squadRepo.squadMap.get(squadID).setSquadValue(sum);
     return true;
     }
-    boolean PlayerIdentityChecker(String username , Integer playerId)
+    private boolean PlayerIdentityChecker(String username , Integer playerId)
     {
         int squadID = userRepo.usersMap.get(username).getSquadID();
         int arraySize = squadRepo.squadMap.get(squadID).getListOfPlayerID().size();
@@ -47,7 +47,7 @@ public class UserService {
         }
         return true;
     }
-    boolean playersPositionChecker(String username , int playerId)
+    private boolean playersPositionChecker(String username , int playerId)
     {
         int squadID = userRepo.usersMap.get(username).getSquadID();
         int GK = SquadRepo.squadMap.get(squadID).getCurrentNoGK();
@@ -91,7 +91,7 @@ public class UserService {
         }
         return true;
     }
-    boolean playersCounterChecker(String username , int playerId)
+    private boolean playersCounterChecker(String username , int playerId)
     {
         int squadID = userRepo.usersMap.get(username).getSquadID();
         String playerTeam = playerRepo.playersMap.get(playerId).getPlayerTeam();
