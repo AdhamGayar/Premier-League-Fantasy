@@ -11,8 +11,9 @@ public class PlayerService {
     boolean editPlayer(Player player){
         return true;
     }
-    void addNewPlayer(Player player)
+    void addNewPlayer()
     {
+        Player player = new Player();
         Scanner input = new Scanner(System.in);
         Scanner intinput = new Scanner(System.in);
         String s;

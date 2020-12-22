@@ -28,6 +28,7 @@ public class UserService {
         int squadID = userRepo.usersMap.get(username).getSquadID();
         int playerValue = playerRepo.playersMap.get(playerId).getPlayerValue();
         int sum = SquadRepo.squadMap.get(squadID).getSquadValue();
+        int userBudget = userRepo.usersMap.get(username).getUserBudget();
         sum = sum + playerValue;
         if(sum>100)
         {
@@ -35,6 +36,7 @@ public class UserService {
             return false;
         }
         squadRepo.squadMap.get(squadID).setSquadValue(sum);
+        userRepo.usersMap.get(username).setUserBudget(userBudget-playerValue);
     return true;
     }
     private boolean PlayerIdentityChecker(String username , Integer playerId)

@@ -3,7 +3,7 @@ public class User {
     private String password;
     private String email;
     private String favoriteTeam;
-    private int userBudget = 100000000;
+    private int userBudget = 100;
     private int squadID = 0;
     User()
     {}

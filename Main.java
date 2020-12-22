@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Welcome To Premier League Fantasy 20/21");
         while(true)
         {
-        System.out.println("To: \nSign up -> enter 1 \nLog in -> enter 2 \nExit -> enter 3"); // Outer Menu
+        System.out.println("To: \nSign up -> enter 1 \nLog in -> enter 2 \nAdd New Player -> enter 3\nExit -> enter 4"); // Outer Menu
         String userChoice = stringInput.nextLine();
         if(userChoice.equals("1"))  // SIGNUP PROCESS BEGIN
         {
@@ -94,7 +94,12 @@ public class Main {
                     System.out.println("Please check your credentials and try again");
                 }
         }
-        else if(userChoice.equals("3"))  // EXIT
+        else if(userChoice.equals("3"))  //Add New Player
+        {
+            PlayerService pService = new PlayerService();
+            pService.addNewPlayer();
+        }
+        else if(userChoice.equals("4"))  // EXIT
         {
             break;
         }
