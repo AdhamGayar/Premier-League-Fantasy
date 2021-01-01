@@ -53,7 +53,7 @@ public class SquadRepo implements Repo{
                     information = "";
                 }
                 else if (Line.charAt(i) == ';') {
-                    s1.setListOfPlayerID(writeArrayToFile(information));
+                    s1.setListOfPlayerID(readArrayFromFile(information));
                     squadMap.put(s1.getSquadID(),s1);
                     information="";
                 }
@@ -99,7 +99,7 @@ public class SquadRepo implements Repo{
         writer.close();
     }
 
-    public ArrayList<Integer> writeArrayToFile(String information) {
+    public ArrayList<Integer> readArrayFromFile(String information) {
         int size = information.length();
         String element = "";
         ArrayList<Integer> listOfPlayerID = new ArrayList<>();

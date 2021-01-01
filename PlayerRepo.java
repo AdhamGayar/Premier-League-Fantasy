@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class PlayerRepo implements Repo{
                         case 2:p1.setPlayerTeam(information);break;
                         case 3:p1.setPlayerPosition(information);break;
                         case 4:p1.setPlayerValue(Integer.parseInt(information));break;
-                        case 5:p1.setPlayerMatchPoints(Integer.parseInt(information));break;
+                        case 5:p1.setPlayerGameWeekPoints(readArrayFromFile(information));break;
                     }
                     count++;
                     information="";
@@ -46,7 +47,7 @@ public class PlayerRepo implements Repo{
        /* for (Map.Entry<Integer, Player> me : playersMap.entrySet()) {
             Player p3;
             p3=me.getValue();
-            System.out.println(p3.getPlayerID()+" "+p3.getPlayerName()+" "+p3.getPlayerTeam()+" "+p3.getPlayerPosition()+" "+p3.getPlayerValue()+" "+p3.getPlayerMatchPoints()+" "+p3.getPlayerTotalPoints());
+            System.out.println(p3.getPlayerID()+" "+p3.getPlayerName()+" "+p3.getPlayerTeam()+" "+p3.getPlayerPosition()+" "+p3.getPlayerValue()+" "+p3.getPlayerGameWeekPoints()+" "+p3.getPlayerTotalPoints());
         }*/
     }
     public void writeToFile(String path) throws FileNotFoundException {
@@ -59,13 +60,39 @@ public class PlayerRepo implements Repo{
                 String s3 =me.getValue().getPlayerTeam();
                 String s4 =me.getValue().getPlayerPosition();
                 int s5 =me.getValue().getPlayerValue();
-                int s6 =me.getValue().getPlayerMatchPoints();
+                ArrayList s6 =me.getValue().getPlayerGameWeekPoints();
                 int s7 =me.getValue().getPlayerTotalPoints();
 
-                writer.write(s1 + "~" + s2 + "~" + s3 + "~" + s4 + "~" + s5 + "~" + s6 + "~" + s7 + ";\n");
+                writer.write(s1 + "~" + s2 + "~" + s3 + "~" + s4 + "~" + s5 + "~" + "[");
+                for (int i = 0 ; i<s6.size() ; i++) {
+                    if (i==s6.size()-1)
+                        writer.write(s6.get(i) + "");
+                    else
+                        writer.write(s6.get(i) + ",");
+                }
+                writer.write("]" + "~" + s7 + ";\n");
             }
         }catch(NullPointerException x)
         {}
         writer.close();
+    }
+
+    public ArrayList<Integer> readArrayFromFile(String information) {
+        int size = information.length();
+        String element = "";
+        ArrayList<Integer> listOfPlayerID = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            if (information.charAt(i) == '[')
+                continue;
+            else if (information.charAt(i) == ',') {
+                listOfPlayerID.add(Integer.parseInt(element));
+                element = "";
+            } else if (information.charAt(i) == ']') {
+                listOfPlayerID.add(Integer.parseInt(element));
+            } else {
+                element += information.charAt(i);
+            }
+        }
+        return listOfPlayerID;
     }
 }

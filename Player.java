@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 public class Player {
     private String playerName;
     private String playerPosition;
     private int playerValue;
     private int playerID;
     private int playerTotalPoints = 0;
-    private int playerMatchPoints = 0;
+    private ArrayList<Integer> playerGameWeekPoints = new ArrayList<>(38);
     private String playerTeam;
     public Player()
     {}
@@ -16,6 +18,12 @@ public class Player {
         this.playerTeam = playerTeam;
     }
 
+    public ArrayList<Integer> getPlayerGameWeekPoints() {
+        return playerGameWeekPoints;
+    }
+    public void setPlayerGameWeekPoints(ArrayList<Integer> playerGameWeekPoints) {
+        this.playerGameWeekPoints = playerGameWeekPoints;
+    }
     public String getPlayerName() {
         return playerName;
     }
@@ -56,13 +64,6 @@ public class Player {
         this.playerTotalPoints = playerTotalPoints;
     }
 
-    public int getPlayerMatchPoints() {
-        return playerMatchPoints;
-    }
-
-    public void setPlayerMatchPoints(int playerMatchPoints) {
-        this.playerMatchPoints = playerMatchPoints;
-    }
     public String getPlayerTeam() { return playerTeam; }
 
     public void setPlayerTeam(String playerTeam) { this.playerTeam = playerTeam; }
