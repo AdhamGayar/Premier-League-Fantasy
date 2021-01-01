@@ -2,15 +2,15 @@ public class UserService {
     private UserRepo userRepo;
     private SquadRepo squadRepo;
     private PlayerRepo playerRepo;
-    Squad s = new Squad(); //new
-    void createSquad(String username,String squadName) // NEW
+    Squad s = new Squad();
+    void createSquad(String username,String squadName)
     {
         s.setSquadName(squadName);
         s.setSquadID(SquadRepo.squadMap.size()+1);
         userRepo.usersMap.get(username).setSquadID(s.getSquadID());
         SquadRepo.squadMap.put(s.getSquadID(),s);
     }
-    boolean addPlayerToSquad(String username , Integer playerId) // NEW
+    boolean addPlayerToSquad(String username , Integer playerId)
     {
         int squadID = userRepo.usersMap.get(username).getSquadID();
         int numOfPlayers = SquadRepo.squadMap.get(squadID).getNumOfPlayers();
@@ -111,7 +111,11 @@ public class UserService {
         }
         return true;
     }
-    boolean removePlayerFromSquad(String username , int playerId)
+    void addPlayerToMainSquad(String username , Integer playerId) //constraints: at least 1 goalkeeper, 3 defenders and 1 forward
+    {
+
+    }
+    boolean replacePlayer(String username , int playerId)
     {
         return true;
     }
@@ -119,7 +123,7 @@ public class UserService {
     {
 
     }
-    void getSquadNames(String username)
+    void setViceCaptain(int playerID)
     {
 
     }
