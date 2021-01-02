@@ -48,12 +48,15 @@ public class SquadRepo implements Repo{
                         case 8:
                             s1.setCurrentNoFD(Integer.parseInt(information));
                             break;
+                        case 9:
+                            s1.setListOfPlayerID(readArrayFromFile(information));
+                            break;
                     }
                     count++;
                     information = "";
                 }
                 else if (Line.charAt(i) == ';') {
-                    s1.setListOfPlayerID(readArrayFromFile(information));
+                    s1.setMainSquad(readArrayFromFile(information));
                     squadMap.put(s1.getSquadID(),s1);
                     information="";
                 }
@@ -84,6 +87,7 @@ public class SquadRepo implements Repo{
                 int s8 = me.getValue().getCurrentNoMF();
                 int s9 = me.getValue().getCurrentNoFD();
                 ArrayList s10 = me.getValue().getListOfPlayerID();
+                ArrayList s11 = me.getValue().getMainSquad();
 
                 writer.write(s1 + "~" + s2 + "~" + s3 + "~" + s4 + "~" + s5 + "~" + s6 + "~" + s7 + "~" + s8 + "~" + s9 + "~" + "[");
                 for (int i = 0 ; i<s10.size() ; i++) {
@@ -92,7 +96,15 @@ public class SquadRepo implements Repo{
                     else
                         writer.write(s10.get(i) + ",");
                 }
-                writer.write("]" + ";" +"\n");
+                writer.write("]" + "~" + "[");
+
+                for (int i = 0 ; i<s11.size() ; i++) {
+                    if (i==s11.size()-1)
+                        writer.write(s11.get(i) + "");
+                    else
+                        writer.write(s11.get(i) + ",");
+                }
+                writer.write("]" + ";\n");
             }
         } catch (NullPointerException x) {
         }

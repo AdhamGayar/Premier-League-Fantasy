@@ -11,6 +11,15 @@ public class Squad {
     private int currentNoDF = 0; // #7
     private int currentNoMF = 0; // #8
     private int currentNoFD = 0; // #9
+    private ArrayList<Integer> mainSquad = new ArrayList<Integer>(); // #10
+
+    public ArrayList<Integer> getMainSquad() {
+        return mainSquad;
+    }
+
+    public void setMainSquad(ArrayList<Integer> mainSquad) {
+        this.mainSquad = mainSquad;
+    }
 
     public Squad() {
     }

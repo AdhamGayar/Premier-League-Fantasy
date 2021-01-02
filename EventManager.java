@@ -1,17 +1,19 @@
 import java.util.ArrayList;
 
 public class EventManager {
-    private ArrayList<Integer> listofPlayersID= new ArrayList<>(22);
+    private ArrayList<Integer> listofPlayersID = new ArrayList<>(22);
     private int gameWeekID;
 
     public void substitute(int playerId,int playerId2,int minute) //+1 minute<60 ,  +2 minute>=60
     {
 
     }
-    public void scoreGoal(int playerId){ // +6 for GK & DF , +5 for MF , +4 for FD
+    public void scoreGoal(int playerId) // +6 for GK & DF , +5 for MF , +4 for FD
+    {
 
     }
-    public void assistGoal(int playerId){ // +3 for any player
+    public void assistGoal(int playerId) // +3 for any player
+    {
 
     }
     public void cleansheet(int playerId) // +4 for GK & DF , +1 for MF

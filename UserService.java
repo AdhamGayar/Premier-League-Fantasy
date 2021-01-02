@@ -127,4 +127,8 @@ public class UserService {
     {
 
     }
+    void setSquadScore(int playerID)
+    {
+
+    }
 }
