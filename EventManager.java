@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class EventManager {
-    private ArrayList<Integer> listofPlayersID = new ArrayList<>(22);
     private int gameWeekID;
+    private MatchRepo matchRepo;
 
     public void substitute(int playerId,int playerId2,int minute) //+1 minute<60 ,  +2 minute>=60
     {
