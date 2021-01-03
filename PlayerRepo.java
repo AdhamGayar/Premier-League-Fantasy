@@ -27,7 +27,7 @@ public class PlayerRepo implements Repo{
                         case 2:p1.setPlayerTeam(information);break;
                         case 3:p1.setPlayerPosition(information);break;
                         case 4:p1.setPlayerValue(Integer.parseInt(information));break;
-                        case 5:p1.setPlayerGameWeekPoints(readArrayFromFile(information));break;
+                        case 5:p1.setPlayerSeasonPoints(readArrayFromFile(information));break;
                     }
                     count++;
                     information="";
@@ -60,7 +60,7 @@ public class PlayerRepo implements Repo{
                 String s3 =me.getValue().getPlayerTeam();
                 String s4 =me.getValue().getPlayerPosition();
                 int s5 =me.getValue().getPlayerValue();
-                ArrayList s6 =me.getValue().getPlayerGameWeekPoints();
+                ArrayList s6 =me.getValue().getPlayerSeasonPoints();
                 int s7 =me.getValue().getPlayerTotalPoints();
 
                 writer.write(s1 + "~" + s2 + "~" + s3 + "~" + s4 + "~" + s5 + "~" + "[");
