@@ -21,15 +21,12 @@ public class MatchRepo {
                 if (Line.charAt(i) == '~') {
                     switch (count) {
                         case 0:
-                            m1.setGameWeekMatch(information);
+                            m1.setMatchKey(information);
                             break;
                         case 1:
-                            m1.setHomeTeam(information);
+                            m1.setGameWeek(Integer.parseInt(information));
                             break;
                         case 2:
-                            m1.setAwayTeam(information);
-                            break;
-                        case 3:
                             m1.setHomePlayersId(readArrayFromFile(information));
                             break;
                     }
@@ -38,7 +35,7 @@ public class MatchRepo {
                 }
                 else if (Line.charAt(i) == ';') {
                     m1.setAwayPlayersId(readArrayFromFile(information));
-                    matchMap.put(m1.getGameWeekMatch(),m1);
+                    matchMap.put(m1.getMatchKey(),m1);
                     information="";
                 }
                 else {
@@ -46,11 +43,6 @@ public class MatchRepo {
                 }
             }
         }
-        /*for (Map.Entry<Integer, Squad> me : squadMap.entrySet()) {
-            Squad s3;
-            s3 = me.getValue();
-            System.out.println(s3.getSquadID() + " " + s3.getSquadName() + " " + s3.getSquadValue() + " " + s3.getNumOfPlayers() + " " + s3.getSquadCaptainID() + " " + s3.getCurrentNoGK() + " " + s3.getCurrentNoDF() + " " + s3.getCurrentNoMF() + " " + s3.getCurrentNoFD()+ " " + s3.getListOfPlayerID());
-        }*/
     }
 
     public ArrayList<Integer> readArrayFromFile(String information) {

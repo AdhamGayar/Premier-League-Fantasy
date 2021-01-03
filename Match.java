@@ -1,33 +1,17 @@
 import java.util.ArrayList;
 
 public class Match {
-    private String homeTeam; //#2
-    private String awayTeam; // #3
-    private ArrayList<Integer> homePlayersId = new ArrayList<>(11);  //#4
-    private ArrayList<Integer> awayPlayersId = new ArrayList<>(11);  //#5
-    private String gameWeekMatch; // 0101 #1
+    private String matchKey; // #1
+    private ArrayList<Integer> homePlayersId = new ArrayList<>(11);  //#3
+    private ArrayList<Integer> awayPlayersId = new ArrayList<>(11);  //#4
+    private int gameWeek; // 01 #2
 
-    public String getHomeTeam() {
-        return homeTeam;
+    public String getMatchKey() {
+        return matchKey;
     }
 
-    public void setHomeTeam(String homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    public String getAwayTeam() {
-        return awayTeam;
-    }
-
-    public void setAwayTeam(String awayTeam) {
-        this.awayTeam = awayTeam;
-    }
-    public String getGameWeekMatch() {
-        return gameWeekMatch;
-    }
-
-    public void setGameWeekMatch(String gameWeekMatch) {
-        this.gameWeekMatch = gameWeekMatch;
+    public void setMatchKey(String matchKey) {
+        this.matchKey = matchKey;
     }
 
     public ArrayList<Integer> getHomePlayersId() {
@@ -44,5 +28,13 @@ public class Match {
 
     public void setAwayPlayersId(ArrayList<Integer> awayPlayersId) {
         this.awayPlayersId = awayPlayersId;
+    }
+
+    public int getGameWeek() {
+        return gameWeek;
+    }
+
+    public void setGameWeek(int gameWeek) {
+        this.gameWeek = gameWeek;
     }
 }
