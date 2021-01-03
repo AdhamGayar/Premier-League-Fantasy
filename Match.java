@@ -5,6 +5,42 @@ public class Match {
     private ArrayList<Integer> homePlayersId = new ArrayList<>(11);  //#3
     private ArrayList<Integer> awayPlayersId = new ArrayList<>(11);  //#4
     private int gameWeek; // 01 #2
+    private int homeShotsCounter;
+    private int awayShotsCounter;
+    private int homeConcededGoals;
+    private int awayConcededGoals;
+
+    public int getHomeShotsCounter() {
+        return homeShotsCounter;
+    }
+
+    public void setHomeShotsCounter(int homeShotsCounter) {
+        this.homeShotsCounter = homeShotsCounter;
+    }
+
+    public int getAwayShotsCounter() {
+        return awayShotsCounter;
+    }
+
+    public void setAwayShotsCounter(int awayShotsCounter) {
+        this.awayShotsCounter = awayShotsCounter;
+    }
+
+    public int getHomeConcededGoals() {
+        return homeConcededGoals;
+    }
+
+    public void setHomeConcededGoals(int homeConcededGoals) {
+        this.homeConcededGoals = homeConcededGoals;
+    }
+
+    public int getAwayConcededGoals() {
+        return awayConcededGoals;
+    }
+
+    public void setAwayConcededGoals(int awayConcededGoals) {
+        this.awayConcededGoals = awayConcededGoals;
+    }
 
     public String getMatchKey() {
         return matchKey;
