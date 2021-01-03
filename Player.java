@@ -66,9 +66,10 @@ public class Player {
     public String getPlayerTeam() { return playerTeam; }
 
     public void setPlayerTeam(String playerTeam) { this.playerTeam = playerTeam; }
-    public void setPlayerGameWeekPoints(int index, int playerID)
+    public void addPlayerGameWeekPoints(int index, int points)
     {
-        playerSeasonPoints.add(index,playerID);
+        int totalPoints = playerSeasonPoints.get(index) + points;
+        playerSeasonPoints.add(index,totalPoints);
     }
     public int getPlayerGameWeekPoints(int index)
     {
