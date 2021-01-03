@@ -37,7 +37,7 @@ public class UserService {
         }
         squadRepo.squadMap.get(squadID).setSquadValue(sum);
         userRepo.usersMap.get(username).setUserBudget(userBudget-playerValue);
-    return true;
+        return true;
     }
     private boolean PlayerIdentityChecker(String username , Integer playerId)
     {
