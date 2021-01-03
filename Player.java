@@ -5,7 +5,7 @@ public class Player {
     private int playerValue;
     private int playerID;
     private int playerTotalPoints = 0;
-    private ArrayList<Integer> playerGameWeekPoints = new ArrayList<>(38);
+    private ArrayList<Integer> playerSeasonPoints = new ArrayList<>(38);
     private String playerTeam;
     public Player()
     {}
@@ -17,11 +17,11 @@ public class Player {
         this.playerTeam = playerTeam;
     }
 
-    public ArrayList<Integer> getPlayerGameWeekPoints() {
-        return playerGameWeekPoints;
+    public ArrayList<Integer> getPlayerSeasonPoints() {
+        return playerSeasonPoints;
     }
-    public void setPlayerGameWeekPoints(ArrayList<Integer> playerGameWeekPoints) {
-        this.playerGameWeekPoints = playerGameWeekPoints;
+    public void setPlayerSeasonPoints(ArrayList<Integer> playerSeasonPoints) {
+        this.playerSeasonPoints = playerSeasonPoints;
     }
     public String getPlayerName() {
         return playerName;
@@ -66,4 +66,8 @@ public class Player {
     public String getPlayerTeam() { return playerTeam; }
 
     public void setPlayerTeam(String playerTeam) { this.playerTeam = playerTeam; }
+    public void setPlayerGameWeekPoints(int index, int playerID)
+    {
+        playerSeasonPoints.add(index,playerID);
+    }
 }
