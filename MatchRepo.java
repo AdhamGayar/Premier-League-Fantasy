@@ -43,6 +43,11 @@ public class MatchRepo {
                 }
             }
         }
+         for (Map.Entry<String, Match> me : matchMap.entrySet()) {
+            Match m3;
+            m3=me.getValue();
+            System.out.println(m3.getMatchKey()+" "+m3.getGameWeek()+" "+m3.getHomePlayersId()+" "+m3.getAwayPlayersId());
+        }
     }
 
     public ArrayList<Integer> readArrayFromFile(String information) {

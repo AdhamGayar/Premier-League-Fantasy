@@ -14,14 +14,32 @@ public class Main {
         String userPath = "Fantasy-Database\\UserDatabase.txt";     // PATHS
         String squadPath = "Fantasy-Database\\SquadDatabase.txt";
         String playerPath = "Fantasy-Database\\PlayerDatabase.txt";
+        String matchPath = "Fantasy-Database\\matchDatabase.txt";
 
         UserRepo userRepo = new UserRepo();      // REPOSITORIES
         SquadRepo squadRepo = new SquadRepo();
         PlayerRepo playerRepo = new PlayerRepo();
+        MatchRepo matchRepo = new MatchRepo();
 
         userRepo.readFromFile(userPath);  // Reading from files
         squadRepo.readFromFile(squadPath);
         playerRepo.readFromFile(playerPath);
+        matchRepo.readFromFile(matchPath);
+
+
+       /* EventManager eventManager = new EventManager();
+        eventManager.startMatch("ARSvAVL");
+        eventManager.scoreGoal(548,"ARSvAVL");
+        eventManager.assistGoal(12,"ARSvAVL");
+        eventManager.concedeGoal("away","ARSvAVL");
+        eventManager.missPenalty(580,"ARSvAVL");
+        eventManager.savePenalty(10,"ARSvAVL");
+        eventManager.receiveCard("red",118,"ARSvAVL","home");
+        eventManager.receiveCard("yellow",169,"ARSvAVL","away");
+        eventManager.substitute(311,404,62,"home","ARSvAVL");
+        eventManager.cleanSheet("home","ARSvAVL");
+        eventManager.endMatch("ARSvAVL");*/
+
 
         Scanner stringInput = new Scanner(System.in);  // SCANNERS
         Scanner intInput = new Scanner(System.in);

@@ -69,7 +69,7 @@ public class Player {
     public void addPlayerGameWeekPoints(int index, int points)
     {
         int totalPoints = playerSeasonPoints.get(index) + points;
-        playerSeasonPoints.add(index,totalPoints);
+        playerSeasonPoints.set(index,totalPoints);
     }
     private int getPlayerGameWeekPoints(int index)
     {
