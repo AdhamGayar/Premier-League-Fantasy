@@ -70,7 +70,7 @@ public class Player {
     {
         playerSeasonPoints.add(index,playerID);
     }
-    public int getPlayerTeam(int index)
+    public int getPlayerGameWeekPoints(int index)
     {
         return playerSeasonPoints.get(index);
     }
