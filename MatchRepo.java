@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class MatchRepo {
+public class MatchRepo implements Repo{
     public static Map< String, Match> matchMap = new HashMap<String, Match>();
 
     public void readFromFile(String path) throws FileNotFoundException {
@@ -48,6 +48,9 @@ public class MatchRepo {
             m3=me.getValue();
             System.out.println(m3.getMatchKey()+" "+m3.getGameWeek()+" "+m3.getHomePlayersId()+" "+m3.getAwayPlayersId());
         }
+    }
+    @Override
+    public void writeToFile(String path) throws FileNotFoundException {
     }
 
     public ArrayList<Integer> readArrayFromFile(String information) {

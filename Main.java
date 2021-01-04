@@ -1,8 +1,4 @@
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
@@ -14,12 +10,12 @@ public class Main {
         String userPath = "Fantasy-Database\\UserDatabase.txt";     // PATHS
         String squadPath = "Fantasy-Database\\SquadDatabase.txt";
         String playerPath = "Fantasy-Database\\PlayerDatabase.txt";
-        String matchPath = "Fantasy-Database\\matchDatabase.txt";
+        String matchPath = "Fantasy-Database\\MatchDatabase.txt";
 
-        UserRepo userRepo = new UserRepo();      // REPOSITORIES
-        SquadRepo squadRepo = new SquadRepo();
-        PlayerRepo playerRepo = new PlayerRepo();
-        MatchRepo matchRepo = new MatchRepo();
+        Repo userRepo = new UserRepo();      // REPOSITORIES
+        Repo squadRepo = new SquadRepo();
+        Repo playerRepo = new PlayerRepo();
+        Repo matchRepo = new MatchRepo();
 
         userRepo.readFromFile(userPath);  // Reading from files
         squadRepo.readFromFile(squadPath);
@@ -77,7 +73,7 @@ public class Main {
             password = stringInput.nextLine();
                 if (register.login(username, password)) // Username & password verification
                 {
-                    user1 = userRepo.usersMap.get(username);
+                    user1 = UserRepo.usersMap.get(username);
                     System.out.println("Login succeded");
                         if (user1.getSquadID() == 0) // if user doesn't have a squad
                         {

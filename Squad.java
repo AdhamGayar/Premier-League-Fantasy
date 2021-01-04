@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Squad {
-    private ArrayList<Integer> listOfPlayerID = new ArrayList<Integer>();
+    private ArrayList<Integer> listOfPlayerID = new ArrayList<Integer>();// #10
     private int numOfPlayers = 0; // #4
     private String squadName; // #2
     private int squadValue = 0; // #3
@@ -11,7 +11,7 @@ public class Squad {
     private int currentNoDF = 0; // #7
     private int currentNoMF = 0; // #8
     private int currentNoFD = 0; // #9
-    private ArrayList<Integer> mainSquad = new ArrayList<Integer>(); // #10
+    private ArrayList<Integer> mainSquad = new ArrayList<Integer>(); // #11
 
     public ArrayList<Integer> getMainSquad() {
         return mainSquad;
@@ -99,8 +99,12 @@ public class Squad {
     public void setListOfPlayerID(ArrayList<Integer> listOfPlayerID) {
         this.listOfPlayerID = listOfPlayerID;
     }
-    public void setPlayerID(int playerID)
+    public void addToListOfPlayerID(int playerID)
     {
         listOfPlayerID.add(playerID);
+    }
+    public void addToMainSquad(int playerID)
+    {
+        mainSquad.add(playerID);
     }
 }

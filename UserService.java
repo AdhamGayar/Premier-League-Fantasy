@@ -1,64 +1,64 @@
+import java.util.ArrayList;
+
 public class UserService {
-    private UserRepo userRepo;
-    private SquadRepo squadRepo;
-    private PlayerRepo playerRepo;
-    Squad s = new Squad();
+
     void createSquad(String username,String squadName)
     {
-        s.setSquadName(squadName);
-        s.setSquadID(SquadRepo.squadMap.size()+1);
-        userRepo.usersMap.get(username).setSquadID(s.getSquadID());
-        SquadRepo.squadMap.put(s.getSquadID(),s);
+        Squad squad = new Squad();
+        squad.setSquadName(squadName);
+        squad.setSquadID(SquadRepo.squadMap.size()+1);
+        UserRepo.usersMap.get(username).setSquadID(squad.getSquadID());
+        SquadRepo.squadMap.put(squad.getSquadID(),squad);
     }
     boolean addPlayerToSquad(String username , Integer playerId)
     {
-        int squadID = userRepo.usersMap.get(username).getSquadID();
+        int squadID = UserRepo.usersMap.get(username).getSquadID();
         int numOfPlayers = SquadRepo.squadMap.get(squadID).getNumOfPlayers();
         if(!budgetChecker(username,playerId)) return false;
         if(!PlayerIdentityChecker(username,playerId)) return false;
         if(!playersCounterChecker(username,playerId)) return false;
         if(!playersPositionChecker(username,playerId)) return false;
 
-        SquadRepo.squadMap.get(squadID).setPlayerID(playerId);
+        SquadRepo.squadMap.get(squadID).addToListOfPlayerID(playerId);
         SquadRepo.squadMap.get(squadID).setNumOfPlayers(++numOfPlayers);
         return true;
     }
     private boolean budgetChecker(String username , Integer playerId)
     {
-        int squadID = userRepo.usersMap.get(username).getSquadID();
-        int playerValue = playerRepo.playersMap.get(playerId).getPlayerValue();
+        int squadID = UserRepo.usersMap.get(username).getSquadID();
+        int playerValue = PlayerRepo.playersMap.get(playerId).getPlayerValue();
         int sum = SquadRepo.squadMap.get(squadID).getSquadValue();
-        int userBudget = userRepo.usersMap.get(username).getUserBudget();
+        int userBudget = UserRepo.usersMap.get(username).getUserBudget();
         sum = sum + playerValue;
         if(sum>100)
         {
             System.out.println("budget exceeded");
             return false;
         }
-        squadRepo.squadMap.get(squadID).setSquadValue(sum);
-        userRepo.usersMap.get(username).setUserBudget(userBudget-playerValue);
+        SquadRepo.squadMap.get(squadID).setSquadValue(sum);
+        UserRepo.usersMap.get(username).setUserBudget(userBudget-playerValue);
         return true;
     }
     private boolean PlayerIdentityChecker(String username , Integer playerId)
     {
-        int squadID = userRepo.usersMap.get(username).getSquadID();
-        int arraySize = squadRepo.squadMap.get(squadID).getListOfPlayerID().size();
+        int squadID = UserRepo.usersMap.get(username).getSquadID();
+        int arraySize = SquadRepo.squadMap.get(squadID).getListOfPlayerID().size();
         for(int i=0; i < arraySize;i++) {
-            if (playerId == squadRepo.squadMap.get(squadID).getListOfPlayerID().get(i))
+            if (playerId == SquadRepo.squadMap.get(squadID).getListOfPlayerID().get(i))
                 return false;
         }
         return true;
     }
     private boolean playersPositionChecker(String username , int playerId)
     {
-        int squadID = userRepo.usersMap.get(username).getSquadID();
+        int squadID = UserRepo.usersMap.get(username).getSquadID();
         int GK = SquadRepo.squadMap.get(squadID).getCurrentNoGK();
         int DF = SquadRepo.squadMap.get(squadID).getCurrentNoDF();
         int MF = SquadRepo.squadMap.get(squadID).getCurrentNoMF();
         int FD = SquadRepo.squadMap.get(squadID).getCurrentNoFD();
-        String position = playerRepo.playersMap.get(playerId).getPlayerPosition();
-        String playerName = playerRepo.playersMap.get(playerId).getPlayerName();
-        if(position.equals("GK"))
+        String position = PlayerRepo.playersMap.get(playerId).getPlayerPosition();
+        String playerName = PlayerRepo.playersMap.get(playerId).getPlayerName();
+        if(position.compareToIgnoreCase("GK")==0)
         {
             if(GK<2)
             {
@@ -67,7 +67,7 @@ public class UserService {
                 System.out.println( (2 - GK) + " GK left");
             } else return false;
         }
-        else if(position.equals("DF"))
+        else if(position.compareToIgnoreCase("DF")==0)
         {
             if(DF<5) {
                 SquadRepo.squadMap.get(squadID).setCurrentNoDF(++DF);
@@ -75,7 +75,7 @@ public class UserService {
                 System.out.println( (5 - DF) + " DF left");
             } else return false;
         }
-        else if(position.equals("MF")){
+        else if(position.compareToIgnoreCase("MF")==0){
 
             if(MF<5) {
                 SquadRepo.squadMap.get(squadID).setCurrentNoMF(++MF);
@@ -83,7 +83,7 @@ public class UserService {
                 System.out.println( (5 - MF) + " MF left");
             } else return false;
         }
-        else if(position.equals("FD"))
+        else if(position.compareToIgnoreCase("FD")==0)
         {
             if(FD<3){
                 SquadRepo.squadMap.get(squadID).setCurrentNoFD(++FD);
@@ -95,25 +95,23 @@ public class UserService {
     }
     private boolean playersCounterChecker(String username , int playerId)
     {
-        int squadID = userRepo.usersMap.get(username).getSquadID();
-        String playerTeam = playerRepo.playersMap.get(playerId).getPlayerTeam();
-        int arraySize = squadRepo.squadMap.get(squadID).getListOfPlayerID().size();
+        int squadID = UserRepo.usersMap.get(username).getSquadID();
+        String playerTeam = PlayerRepo.playersMap.get(playerId).getPlayerTeam();
+        int arraySize = SquadRepo.squadMap.get(squadID).getListOfPlayerID().size();
+        ArrayList<Integer> listOfPlayers = new ArrayList<>(SquadRepo.squadMap.get(squadID).getListOfPlayerID());
         int counter = 0;
         for(int i=0; i < arraySize;i++) {
-            if (playerTeam.compareTo(playerRepo.playersMap.get(squadRepo.squadMap.get(squadID).getListOfPlayerID().get(i)).getPlayerTeam())==0)
+            if (playerTeam.compareTo(PlayerRepo.playersMap.get(listOfPlayers.get(i)).getPlayerTeam())==0)
             {
                 counter++;
             }
         }
-        if(counter>=3)
-        {
-            return false;
-        }
-        return true;
+        return counter < 3;
     }
     void addPlayerToMainSquad(String username , Integer playerId) //constraints: at least 1 goalkeeper, 3 defenders and 1 forward
     {
-
+        int squadID = UserRepo.usersMap.get(username).getSquadID();
+       // SquadRepo.squadMap.get(squadID).addToMainSquad(playerId);
     }
     boolean replacePlayer(String username , int playerId)
     {

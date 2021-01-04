@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class PlayerService {
-   private PlayerRepo playerRepo;
     void changePrice(double price,int playerId){
 
     }
@@ -30,7 +29,7 @@ public class PlayerService {
         System.out.println("Please enter player value");
         value = intinput.nextInt();
         player.setPlayerValue(value);
-        player.setPlayerID(playerRepo.playersMap.size());
+        player.setPlayerID(PlayerRepo.playersMap.size());
         PlayerRepo.playersMap.put(player.getPlayerID(),player);
     }
 }
