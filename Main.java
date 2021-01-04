@@ -1,6 +1,16 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class Main {
+    private static void endGameWeek(int gameweek)
+    {
+        SquadRepo squad = new SquadRepo();
+        String path= "Fantasy-Database\\Squad-History\\gameweek" + gameweek + ".txt";
+        try {
+            squad.writeToFile(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) throws FileNotFoundException {
 
         User user1;  // general attributes
@@ -128,5 +138,8 @@ public class Main {
         userRepo.writeToFile(userPath);  // writing to files
         squadRepo.writeToFile(squadPath);
         playerRepo.writeToFile(playerPath);
+
     }
+
+
 }

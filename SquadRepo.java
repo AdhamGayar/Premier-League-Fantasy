@@ -28,27 +28,32 @@ public class SquadRepo implements Repo{
                             s1.setSquadName(information);
                             break;
                         case 2:
-                            s1.setSquadValue(Integer.parseInt(information));
+                            s1.setSquadScore(Integer.parseInt(information));
                             break;
                         case 3:
-                            s1.setNumOfPlayers(Integer.parseInt(information));
+                            s1.setSquadValue(Integer.parseInt(information));
                             break;
                         case 4:
-                            s1.setSquadCaptainID(Integer.parseInt(information));
+                            s1.setNumOfPlayers(Integer.parseInt(information));
                             break;
                         case 5:
-                            s1.setCurrentNoGK(Integer.parseInt(information));
+                            s1.setSquadCaptainID(Integer.parseInt(information));
                             break;
                         case 6:
-                            s1.setCurrentNoDF(Integer.parseInt(information));
+                            s1.setSquadViceCaptainID(Integer.parseInt(information));
                             break;
                         case 7:
-                            s1.setCurrentNoMF(Integer.parseInt(information));
+                            s1.setCurrentNoGK(Integer.parseInt(information));
                             break;
-                        case 8:
-                            s1.setCurrentNoFD(Integer.parseInt(information));
+                        case 8:s1.setCurrentNoDF(Integer.parseInt(information));
                             break;
                         case 9:
+                            s1.setCurrentNoMF(Integer.parseInt(information));
+                            break;
+                        case 10:
+                            s1.setCurrentNoFD(Integer.parseInt(information));
+                            break;
+                        case 11:
                             s1.setListOfPlayerID(readArrayFromFile(information));
                             break;
                     }
@@ -79,30 +84,32 @@ public class SquadRepo implements Repo{
 
                 int s1 = me.getValue().getSquadID();
                 String s2 = me.getValue().getSquadName();
-                int s3 = me.getValue().getSquadValue();
-                int s4 = me.getValue().getNumOfPlayers();
-                int s5 = me.getValue().getSquadCaptainID();
-                int s6 = me.getValue().getCurrentNoGK();
-                int s7 = me.getValue().getCurrentNoDF();
-                int s8 = me.getValue().getCurrentNoMF();
-                int s9 = me.getValue().getCurrentNoFD();
-                ArrayList s10 = me.getValue().getListOfPlayerID();
-                ArrayList s11 = me.getValue().getMainSquad();
+                int s3 = me.getValue().getSquadScore();
+                int s4 = me.getValue().getSquadValue();
+                int s5 = me.getValue().getNumOfPlayers();
+                int s6 = me.getValue().getSquadCaptainID();
+                int s7 = me.getValue().getSquadViceCaptainID();
+                int s8 = me.getValue().getCurrentNoGK();
+                int s9 = me.getValue().getCurrentNoDF();
+                int s10 = me.getValue().getCurrentNoMF();
+                int s11 = me.getValue().getCurrentNoFD();
+                ArrayList s12 = me.getValue().getListOfPlayerID();
+                ArrayList s13 = me.getValue().getMainSquad();
 
-                writer.write(s1 + "~" + s2 + "~" + s3 + "~" + s4 + "~" + s5 + "~" + s6 + "~" + s7 + "~" + s8 + "~" + s9 + "~" + "[");
-                for (int i = 0 ; i<s10.size() ; i++) {
-                    if (i==s10.size()-1)
-                        writer.write(s10.get(i) + "");
+                writer.write(s1 + "~" + s2 + "~" + s3 + "~" + s4 + "~" + s5 + "~" + s6 + "~" + s7 + "~" + s8 + "~" + s9 + "~" + s10 + "~" + s11 + "~" + "[");
+                for (int i = 0 ; i<s12.size() ; i++) {
+                    if (i==s12.size()-1)
+                        writer.write(s12.get(i) + "");
                     else
-                        writer.write(s10.get(i) + ",");
+                        writer.write(s12.get(i) + ",");
                 }
                 writer.write("]" + "~" + "[");
 
-                for (int i = 0 ; i<s11.size() ; i++) {
-                    if (i==s11.size()-1)
-                        writer.write(s11.get(i) + "");
+                for (int i = 0 ; i<s13.size() ; i++) {
+                    if (i==s13.size()-1)
+                        writer.write(s13.get(i) + "");
                     else
-                        writer.write(s11.get(i) + ",");
+                        writer.write(s13.get(i) + ",");
                 }
                 writer.write("]" + ";\n");
             }
@@ -128,5 +135,74 @@ public class SquadRepo implements Repo{
             }
         }
         return listOfPlayerID;
+    }
+
+    public Map read(String path) throws FileNotFoundException {
+        Map<Integer, Squad> squadTempMap = new HashMap<>();
+        File file = new File(path);
+        Scanner sc = new Scanner(file);
+        String Line = "";
+        String information = "";
+        while (sc.hasNextLine()) {
+            Line = sc.nextLine();
+            int count = 0;
+            Squad s1 = new Squad();
+            for (int i = 0; i < Line.length(); i++) {
+                if (Line.charAt(i) == '~') {
+                    switch (count) {
+                        case 0:
+                            s1.setSquadID(Integer.parseInt(information));
+                            break;
+                        case 1:
+                            s1.setSquadName(information);
+                            break;
+                        case 2:
+                            s1.setSquadScore(Integer.parseInt(information));
+                            break;
+                        case 3:
+                            s1.setSquadValue(Integer.parseInt(information));
+                            break;
+                        case 4:
+                            s1.setNumOfPlayers(Integer.parseInt(information));
+                            break;
+                        case 5:
+                            s1.setSquadCaptainID(Integer.parseInt(information));
+                            break;
+                        case 6:
+                            s1.setSquadViceCaptainID(Integer.parseInt(information));
+                            break;
+                        case 7:
+                            s1.setCurrentNoGK(Integer.parseInt(information));
+
+                            break;
+                        case 8:s1.setCurrentNoDF(Integer.parseInt(information));
+
+                            break;
+                        case 9:
+                            s1.setCurrentNoMF(Integer.parseInt(information));
+
+                            break;
+                        case 10:
+                            s1.setCurrentNoFD(Integer.parseInt(information));
+
+                            break;
+                        case 11:
+                            s1.setListOfPlayerID(readArrayFromFile(information));
+                            break;
+                    }
+                    count++;
+                    information = "";
+                }
+                else if (Line.charAt(i) == ';') {
+                    s1.setMainSquad(readArrayFromFile(information));
+                    squadTempMap.put(s1.getSquadID(),s1);
+                    information="";
+                }
+                else {
+                    information += Line.charAt(i);
+                }
+            }
+        }
+        return squadTempMap;
     }
 }

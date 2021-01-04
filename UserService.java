@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class UserService {
 
     void createSquad(String username,String squadName)
@@ -113,20 +112,49 @@ public class UserService {
         int squadID = UserRepo.usersMap.get(username).getSquadID();
        // SquadRepo.squadMap.get(squadID).addToMainSquad(playerId);
     }
-    boolean replacePlayer(String username , int playerId)
+    boolean replacePlayer(String username ,int playerId)
     {
         return true;
     }
-    void setCaptain(int playerID)
+    public void setCaptain(String userName,int playerID)
     {
-
+        int squadID=UserRepo.usersMap.get(userName).getSquadID();
+        ArrayList<Integer> arr=SquadRepo.squadMap.get(squadID).getMainSquad();
+        boolean inSquad=false;
+        for(int i=0;i<arr.size();i++)
+        {
+            if(PlayerRepo.playersMap.get(arr.get(i)).getPlayerID()==playerID)
+            {
+                inSquad=true;
+                break;
+            }
+        }
+        if(inSquad)
+            SquadRepo.squadMap.get(squadID).setSquadCaptainID(playerID);
     }
-    void setViceCaptain(int playerID)
+
+    public void calculateSquadScore(String username ,int gameWeek)
     {
-
+        int sum = 0;
+        int squadID = UserRepo.usersMap.get(username).getSquadID();
+        ArrayList<Integer> playersID = new ArrayList<>(SquadRepo.squadMap.get(squadID).getMainSquad());
+        int captainID = SquadRepo.squadMap.get(squadID).getSquadCaptainID();
+        for(int i=0;i<playersID.size();i++) {
+            if(PlayerRepo.playersMap.get(playersID.get(i)).getPlayerID()==captainID)
+            {
+                sum = sum + (2 * PlayerRepo.playersMap.get(playersID.get(i)).getPlayerSeasonPoints().indexOf(gameWeek-1));
+            }
+            else
+                sum = sum + PlayerRepo.playersMap.get(playersID.get(i)).getPlayerSeasonPoints().indexOf(gameWeek-1);
+        }
+        SquadRepo.squadMap.get(squadID).setSquadScore(sum);
     }
-    void setSquadScore(int playerID)
-    {
 
-    }
 }
+/* SquadRepo squadRepo = new SquadRepo();
+        String path= "Fantasy-Database\\Squad-History\\gameweek" + gameWeek + ".txt";
+        try {
+            Map<Integer, Squad> squadTempMap = new HashMap<>(squadRepo.read(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }*/

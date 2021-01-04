@@ -1,17 +1,21 @@
 import java.util.ArrayList;
 
 public class Squad {
-    private ArrayList<Integer> listOfPlayerID = new ArrayList<Integer>();// #10
-    private int numOfPlayers = 0; // #4
-    private String squadName; // #2
-    private int squadValue = 0; // #3
+
     private int squadID = 0 ; // #1
-    private int squadCaptainID; // #5
-    private int currentNoGK = 0; // #6
-    private int currentNoDF = 0; // #7
-    private int currentNoMF = 0; // #8
-    private int currentNoFD = 0; // #9
-    private ArrayList<Integer> mainSquad = new ArrayList<Integer>(); // #11
+    private String squadName; // #2
+    private int squadScore; // #3
+    private int squadValue = 0; // #4
+    private int numOfPlayers = 0; // #5
+    private int squadCaptainID; // #6
+    private int squadViceCaptainID; // #7
+    private int currentNoGK = 0; // #8
+    private int currentNoDF = 0; // #9
+    private int currentNoMF = 0; // #10
+    private int currentNoFD = 0; // #11
+    private ArrayList<Integer> listOfPlayerID = new ArrayList<Integer>();// #12
+    private ArrayList<Integer> mainSquad = new ArrayList<>(); // #13
+
 
     public ArrayList<Integer> getMainSquad() {
         return mainSquad;
@@ -98,6 +102,21 @@ public class Squad {
 
     public void setListOfPlayerID(ArrayList<Integer> listOfPlayerID) {
         this.listOfPlayerID = listOfPlayerID;
+    }
+    public int getSquadViceCaptainID() {
+        return squadViceCaptainID;
+    }
+
+    public void setSquadViceCaptainID(int squadViceCaptainID) {
+        this.squadViceCaptainID = squadViceCaptainID;
+    }
+
+    public int getSquadScore() {
+        return squadScore;
+    }
+
+    public void setSquadScore(int squadScore) {
+        this.squadScore = squadScore;
     }
     public void addToListOfPlayerID(int playerID)
     {
