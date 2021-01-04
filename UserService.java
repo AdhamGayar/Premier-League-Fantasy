@@ -137,8 +137,8 @@ public class UserService {
         SquadRepo.squadMap.get(squadID).setSquadScore(sum);
     }
 
-    public void printAllPlayers(String position) {
-        if (position.compareToIgnoreCase("gk") == 0) {
+    public boolean printPlayers(String position) {
+        if (position.compareToIgnoreCase("GK") == 0) {
             for (int i = 0; i < 71; i++) {
                 Player p1 = PlayerRepo.playersMap.get(i);
                 System.out.println(p1.getPlayerName() + "\t" + p1.getPlayerID() + "\t" + p1.getPlayerTeam() + "\t" + p1.getPlayerPosition() + "\t" + p1.getPlayerValue());
@@ -149,7 +149,7 @@ public class UserService {
                 System.out.println(p1.getPlayerName() + "\t" + p1.getPlayerID() + "\t" + p1.getPlayerTeam() + "\t" + p1.getPlayerPosition() + "\t" + p1.getPlayerValue());
             }
         } else if (position.compareToIgnoreCase("MF") == 0) {
-            for (int i = 294; i < 541; i++) {
+            for (int i = 294; i < 540; i++) {
                 Player p1 = PlayerRepo.playersMap.get(i);
                 System.out.println(p1.getPlayerName() + "\t" + p1.getPlayerID() + "\t" + p1.getPlayerTeam() + "\t" + p1.getPlayerPosition() + "\t" + p1.getPlayerValue());
             }
@@ -160,6 +160,12 @@ public class UserService {
                 System.out.println(p1.getPlayerName() + "\t" + p1.getPlayerID() + "\t" + p1.getPlayerTeam() + "\t" + p1.getPlayerPosition() + "\t" + p1.getPlayerValue());
             }
         }
+        else
+        {
+            System.out.println("enter correct position");
+            return false;
+        }
+        return true;
     }
 }
 

@@ -46,7 +46,6 @@ public class Main {
         eventManager.cleanSheet("home","ARSvAVL");
         eventManager.endMatch("ARSvAVL");*/
 
-
         Scanner stringInput = new Scanner(System.in);  // SCANNERS
         Scanner intInput = new Scanner(System.in);
 
@@ -97,12 +96,26 @@ public class Main {
                                 squadName = stringInput.nextLine();
                                 UserService u = new UserService();
                                 u.createSquad(username, squadName);
+
                                 for (int i = 1; i <= 15; i++) {
+
+                                    System.out.println("which Position are you looking for?");
+                                    choice = stringInput.nextLine();
+                                    while(!u.printPlayers(choice))
+                                        choice = stringInput.nextLine();
+
                                     System.out.println("enter player number " + i + " ID");
                                     playerID = intInput.nextInt();
+                                    try
+                                    {
                                     if(!u.addPlayerToSquad(username, playerID)) //Checking number of players in each position
                                     {
                                         System.out.println("max number exceeded..Can't add this player");
+                                        i--;
+                                    }
+                                    }
+                                    catch(NullPointerException x){
+                                        System.out.println("Index Out Of Bound");
                                         i--;
                                     }
                                 }

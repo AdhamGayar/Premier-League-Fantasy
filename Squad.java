@@ -4,11 +4,11 @@ public class Squad {
 
     private int squadID = 0 ; // #1
     private String squadName; // #2
-    private int squadScore; // #3
+    private int squadScore = 0; // #3
     private int squadValue = 0; // #4
     private int numOfPlayers = 0; // #5
-    private int squadCaptainID; // #6
-    private int squadViceCaptainID; // #7
+    private int squadCaptainID=0; // #6
+    private int squadViceCaptainID=0; // #7
     private int currentNoGK = 0; // #8
     private int currentNoDF = 0; // #9
     private int currentNoMF = 0; // #10
@@ -137,21 +137,21 @@ public class Squad {
                     mainSquad.add(listOfPlayerID.get(i));
                 gkCount++;
             }
-            else if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("df")==0)
+            else if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("DF")==0)
             {
                 if(dfCount<4)
                     mainSquad.add(listOfPlayerID.get(i));
                 dfCount++;
             }
-            else if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("mf")==0)
+            else if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("MF")==0)
             {
-                if(mfCount<5)
+                if(mfCount<4)
                     mainSquad.add(listOfPlayerID.get(i));
                 mfCount++;
             }
-            else if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("fd")==0)
+            else if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("FD")==0)
             {
-                if(fdCount<5)
+                if(fdCount<2)
                     mainSquad.add(listOfPlayerID.get(i));
                 fdCount++;
             }
