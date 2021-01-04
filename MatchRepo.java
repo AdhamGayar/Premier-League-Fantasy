@@ -43,11 +43,11 @@ public class MatchRepo implements Repo{
                 }
             }
         }
-         for (Map.Entry<String, Match> me : matchMap.entrySet()) {
+        /* for (Map.Entry<String, Match> me : matchMap.entrySet()) {
             Match m3;
             m3=me.getValue();
             System.out.println(m3.getMatchKey()+" "+m3.getGameWeek()+" "+m3.getHomePlayersId()+" "+m3.getAwayPlayersId());
-        }
+        }*/
     }
     @Override
     public void writeToFile(String path) throws FileNotFoundException {

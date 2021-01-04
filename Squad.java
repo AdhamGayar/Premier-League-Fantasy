@@ -126,4 +126,35 @@ public class Squad {
     {
         mainSquad.add(playerID);
     }
+    public void autoFillMainSquad()
+    {
+        int gkCount=0,dfCount=0,mfCount=0,fdCount=0;
+        for(int i=0;i<15;i++)
+        {
+            if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("Gk")==0)
+            {
+                if(gkCount<1)
+                    mainSquad.add(listOfPlayerID.get(i));
+                gkCount++;
+            }
+            else if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("df")==0)
+            {
+                if(dfCount<4)
+                    mainSquad.add(listOfPlayerID.get(i));
+                dfCount++;
+            }
+            else if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("mf")==0)
+            {
+                if(mfCount<5)
+                    mainSquad.add(listOfPlayerID.get(i));
+                mfCount++;
+            }
+            else if(PlayerRepo.playersMap.get(listOfPlayerID.get(i)).getPlayerPosition().compareToIgnoreCase("fd")==0)
+            {
+                if(fdCount<5)
+                    mainSquad.add(listOfPlayerID.get(i));
+                fdCount++;
+            }
+        }
+    }
 }
