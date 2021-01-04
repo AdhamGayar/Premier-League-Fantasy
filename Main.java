@@ -106,6 +106,7 @@ public class Main {
                                         i--;
                                     }
                                 }
+                                SquadRepo.squadMap.get(user1.getSquadID()).autoFillMainSquad();
                                 System.out.println("Squad created successfully");
                                 System.out.println("welcome " + user1.getUsername() + " , Squad " + SquadRepo.squadMap.get(user1.getSquadID()).getSquadName());
                                 break;
