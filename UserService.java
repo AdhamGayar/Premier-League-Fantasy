@@ -98,17 +98,15 @@ public class UserService {
         return counter < 3;
     }
 
-    void addPlayerToMainSquad(String username, Integer playerId) //constraints: at least 1 goalkeeper, 3 defenders and 1 forward
+    void replace(String username, Integer playerId) //constraints: at least 1 goalkeeper, 3 defenders and 1 forward
     {
         int squadID = UserRepo.usersMap.get(username).getSquadID();
         // SquadRepo.squadMap.get(squadID).addToMainSquad(playerId);
         SquadRepo.squadMap.get(squadID);
     }
-
-    boolean replacePlayer(String username, int playerId) {
-        return true;
+    void substitute(String username, Integer playerId)
+    {
     }
-
     public void setCaptain(String userName, int playerID) {
         int squadID = UserRepo.usersMap.get(userName).getSquadID();
         ArrayList<Integer> arr = SquadRepo.squadMap.get(squadID).getMainSquad();
